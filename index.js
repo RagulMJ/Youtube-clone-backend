@@ -10,8 +10,8 @@ const GridFsStorage = require('multer-gridfs-storage')
 const multer = require('multer')
 const Grid = require('gridfs-stream');
 const { Server } = require('http');
-// const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mongodb.net/youtube-clone?retryWrites=true&w=majority'
-const mongoURL = 'mongodb://localhost:27017/youtube-clone'
+const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mongodb.net/youtube-clone?retryWrites=true&w=majority'
+// const mongoURL = 'mongodb://localhost:27017/youtube-clone'
 
 const connectDB = async () => {
   try {
