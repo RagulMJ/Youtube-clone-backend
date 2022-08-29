@@ -12,7 +12,7 @@ const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mo
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(mongoURL, { useNewUrlParser: true })
+    await mongoose.connect(mongoURL, { useNewUrlParser: true , useUnifiedTopology:true})
   } catch (err) {
     process.exit(1)
   }
