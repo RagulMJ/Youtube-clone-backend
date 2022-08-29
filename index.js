@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose')
@@ -7,7 +8,7 @@ const path = require('path')
 const GridFsStorage = require('multer-gridfs-storage')
 const multer = require('multer')
 const Grid = require('gridfs-stream')
-const mongoURL = 'mongodb://localhost:27017/youtube-clone'
+const mongoURL = 'mongodb+srv://Ragul_praveen:tPyNQTVF5hH5tvz0@cluster0.a8imc.mongodb.net/?retryWrites=true&w=majority'
 
 const connectDB = async()=>{
     try{
