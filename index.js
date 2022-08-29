@@ -1,4 +1,5 @@
 require('dotenv').config()
+const connectTimeout = require('connect-timeout');
 const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose')
@@ -54,6 +55,7 @@ const init = async () => {
   //name of the bucket where media is going to be retrieved
   gfs.collection('media')
 
+  let longTimeout = connectTimeout({time:10000})
 
   // secifying a storage location in our cluster for multer
   const storage = await new GridFsStorage({
@@ -85,9 +87,7 @@ const init = async () => {
   });
 
   // route for uploading a file
-  app.post('/upload', (req, res) => {
-    req.socket.setTimeout(1*60*1000)
-    upload.single('file')
+  app.post('/upload',longTimeout, upload.single('file'),(req, res) => {
     res.json(req.file)
   })
 
