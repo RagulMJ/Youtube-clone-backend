@@ -31,7 +31,7 @@ const init = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }))
 
-  app.headersTimeout = 10000
+  app.headersTimeout = 0;
 
   app.use(
     cors({
