@@ -12,7 +12,7 @@ const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mo
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(mongoURL, { useNewUrlParser: true , useUnifiedTopology:true})
+    await mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
   } catch (err) {
     process.exit(1)
   }
@@ -30,7 +30,11 @@ const init = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }))
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: '*'
+    })
+  );
 
   // establish a connection with the database
 
