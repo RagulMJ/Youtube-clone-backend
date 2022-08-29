@@ -1,5 +1,5 @@
 require('dotenv').config()
-const connectTimeout = require('connect-timeout');
+// const connectTimeout = require('connect-timeout');
 const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose')
@@ -10,7 +10,8 @@ const GridFsStorage = require('multer-gridfs-storage')
 const multer = require('multer')
 const Grid = require('gridfs-stream');
 const { Server } = require('http');
-const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mongodb.net/youtube-clone?retryWrites=true&w=majority'
+// const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mongodb.net/youtube-clone?retryWrites=true&w=majority'
+const mongoURL = 'mongodb://localhost:27017/youtube-clone'
 
 const connectDB = async () => {
   try {
@@ -55,7 +56,7 @@ const init = async () => {
   //name of the bucket where media is going to be retrieved
   gfs.collection('media')
 
-  let longTimeout = connectTimeout({time:10000})
+  // let longTimeout = connectTimeout({time:10000})
 
   // secifying a storage location in our cluster for multer
   const storage = await new GridFsStorage({
@@ -69,7 +70,6 @@ const init = async () => {
           const filename =
             buf.toString('hex') + path.extname(file.originalname);
           const fileInfo = {
-            originalname,
             filename,
             bucketName: 'media'
           };
@@ -87,7 +87,7 @@ const init = async () => {
   });
 
   // route for uploading a file
-  app.post('/upload',longTimeout, upload.single('file'),(req, res) => {
+  app.post('/upload', upload.single('file'),(req, res) => {
     res.json(req.file)
   })
 
