@@ -26,7 +26,7 @@ const app = express();
 const init = async () => {
 
 
- app.headersTimeout()
+ 
   // specifiy what middlwares we are going to use
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }))
