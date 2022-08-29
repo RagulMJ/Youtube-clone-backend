@@ -7,7 +7,8 @@ const crypto = require('crypto') // <---- built-in nodejs package
 const path = require('path')
 const GridFsStorage = require('multer-gridfs-storage')
 const multer = require('multer')
-const Grid = require('gridfs-stream')
+const Grid = require('gridfs-stream');
+const { Server } = require('http');
 const mongoURL = 'mongodb+srv://Ragul_praveen:86dNsPHzVmXB3Tj9@cluster0.a8imc.mongodb.net/youtube-clone?retryWrites=true&w=majority'
 
 const connectDB = async () => {
@@ -25,10 +26,12 @@ const app = express();
 const init = async () => {
 
 
-
+ app.headersTimeout()
   // specifiy what middlwares we are going to use
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }))
+
+  app.headersTimeout = 10000
 
   app.use(
     cors({
