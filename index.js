@@ -31,7 +31,7 @@ const init = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }))
 
-  app.headersTimeout = 0;
+  
 
   app.use(
     cors({
@@ -85,8 +85,9 @@ const init = async () => {
   });
 
   // route for uploading a file
-  app.post('/upload', upload.single('file'), (req, res) => {
-
+  app.post('/upload', (req, res) => {
+    req.socket.setTimeout(1*60*1000)
+    upload.single('file')
     res.json(req.file)
   })
 
@@ -135,5 +136,6 @@ const init = async () => {
 init()
 
 app.listen(PORT, () => {
-  console.log(`Server is running on : http://localhost:${PORT}`);
+  console.log(`Server is running on : ${PORT}`);
 });
+
